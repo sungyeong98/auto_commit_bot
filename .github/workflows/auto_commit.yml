@@ -2,7 +2,7 @@ name: Daily Commit
 
 on:
   schedule:
-    - cron: '0 15 * * *'
+    - cron: '0 15 * * *'   # 한국 시간 자정
   workflow_dispatch:
 
 permissions:
@@ -24,11 +24,11 @@ jobs:
         run: |
           echo "Last commit at $(date) - $RANDOM" > log.txt
           git add log.txt
-          git commit -m "Daily commit: $(date)" || echo "No changes to commit"
+          git commit -m "Daily commit: $(date)" || echo "Nothing to commit"
 
       - name: Push changes
         env:
           TOKEN: ${{ secrets.PERSONAL_TOKEN }}
         run: |
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
-          git push
+          git push origin main

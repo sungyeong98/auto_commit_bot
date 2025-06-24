@@ -24,7 +24,12 @@ jobs:
         run: |
           for i in {1..20}
           do
-            echo "Commit #$i at $(date)" >> log.txt
+            if [ $i -eq 1 ]; then
+              echo "Commit #$i at $(date)" > log.txt
+            else
+              echo "Commit #$i at $(date)" >> log.txt
+            fi
+
             git add log.txt
             git commit -m "Daily commit ($i/20): $(date)"
             sleep 1

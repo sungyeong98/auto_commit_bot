@@ -24,5 +24,11 @@ jobs:
         run: |
           echo "Last commit at $(date) - $RANDOM" > log.txt
           git add log.txt
-          git commit -m "Daily commit: $(date)"
+          git commit -m "Daily commit: $(date)" || echo "No changes to commit"
+
+      - name: Push changes
+        env:
+          TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        run: |
+          git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git push

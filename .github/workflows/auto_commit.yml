@@ -1,15 +1,15 @@
-name: Daily Commit
+name: Daily Multi-Commit
 
 on:
   schedule:
-    - cron: '0 15 * * *'   # 한국 시간 자정
+    - cron: '0 15 * * *'  # KST 00:00 = UTC 15:00
   workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  commit:
+  multi_commit:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -20,11 +20,15 @@ jobs:
           git config --global user.name "auto-commit-bot"
           git config --global user.email "bot@example.com"
 
-      - name: Make a daily commit
+      - name: Make 20 commits
         run: |
-          echo "Last commit at $(date) - $RANDOM" > log.txt
-          git add log.txt
-          git commit -m "Daily commit: $(date)" || echo "Nothing to commit"
+          for i in {1..20}
+          do
+            echo "Commit #$i at $(date)" >> log.txt
+            git add log.txt
+            git commit -m "Daily commit ($i/20): $(date)"
+            sleep 1
+          done
 
       - name: Push changes
         env:

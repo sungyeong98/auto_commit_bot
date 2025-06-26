@@ -22,7 +22,7 @@ jobs:
 
       - name: Make 20 commits
         run: |
-          for i in {1..20}
+          for i in {1..100}
           do
             if [ $i -eq 1 ]; then
               echo "Commit #$i at $(date)" > log.txt

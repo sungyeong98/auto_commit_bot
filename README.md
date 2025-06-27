@@ -57,3 +57,5 @@ jobs:
           git remote set-url origin https://x-access-token:${TOKEN}@github.com/${{ github.repository }}
           git push origin main
 ```
+
+* 시간을 조정해야 될 필요성이 있음 (자정에 실행되지만 잔디는 안찍힘)

@@ -22,7 +22,7 @@ jobs:
 
       - name: Make 20 commits
         run: |
-          for i in {1..20}
+          for i in {1..30}
           do
             if [ $i -eq 1 ]; then
               echo "Commit #$i at $(date)" > log.txt
@@ -31,7 +31,7 @@ jobs:
             fi
 
             git add log.txt
-            git commit -m "Daily commit ($i/20): $(date)"
+            git commit -m "Daily commit ($i/30): $(date)"
             sleep 1
           done
 

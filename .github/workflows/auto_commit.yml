@@ -31,7 +31,7 @@ jobs:
             fi
 
             git add log.txt
-            git commit -m "Daily commit ($i/30): $(date)"
+            git commit -m "Daily commit ($i/3): $(date)"
             sleep 1
           done
 
